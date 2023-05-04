@@ -12,6 +12,18 @@ import java.util.List;
 @RestController
 @RequestMapping("food")
 public class FoodController {
+
+    @Autowired
+    private FoodRepository repository;
+
+    @PostMapping
+    public Food saveFood(@RequestBody FoodRequestDTO data) {
+        Food foodData = new Food(data);
+        repository.save(foodData);
+
+        return foodData;
+    }
+
     @GetMapping
     public List<FoodResponseDTO> getAll(){
 
